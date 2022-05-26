@@ -95,9 +95,9 @@ async function templateFindReplace(objCollectTPL, file) {
                 files.map(file => {        
                             if(file.isFile()) {                                                
                                 const newFile = path.join(getDirName, 'components', file.name);
-                                const getTPLStream = fs.createReadStream(newFile, 'utf8');
+                                fs.createReadStream(newFile, 'utf8');
                         
-                                const tpll =  fs.promises.readFile(newFile).then(res => { 
+                                fs.promises.readFile(newFile).then(res => { 
                                     const stopWord = '{{'  + file.name.substring(0, (file.name.length) - 5) + '}}';
                                      saveToObj(res, stopWord);
 
