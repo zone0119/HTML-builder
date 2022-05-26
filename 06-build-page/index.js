@@ -9,7 +9,7 @@ const mergeStylesFolder = path.join(getDirName, 'project-dist', 'style.css');
 const getSrcStylesFolder = path.join(getDirName, 'styles');
 
 const encode = { encoding: 'UTF-8' };
-const writeStream = fs.createWriteStream(mergeStylesFolder, encode);
+
 
 const projectDistAssetsFolder = path.join(getDirName, 'project-dist', 'assets');
 const assetsFolder = path.join(getDirName,  'assets');
@@ -19,7 +19,11 @@ const TplFile = path.join(getDirName, 'template.html');
 const indexHTMLFile = path.join(getDirName, 'project-dist', 'index.html');
 
 
+fs.promises.mkdir(newFolder, { recursive: true });    
+fs.promises.mkdir(projectDistAssetsFolder, { recursive: true });    
 
+const writeStream = fs.createWriteStream(mergeStylesFolder, encode);
+writeStream.write('\n');
 
 let text = '';
 
@@ -32,8 +36,7 @@ let objCollectTPL= {
 async function init()
 {
 
-    await fs.promises.mkdir(newFolder, { recursive: true });    
-    await fs.promises.mkdir(projectDistAssetsFolder, { recursive: true });    
+
 
     await recursionCopyDirs(assetsFolder);
     
